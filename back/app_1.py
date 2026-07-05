@@ -2,7 +2,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pyngrok import ngrok
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 from pdf2image import convert_from_bytes
 import pytesseract
 import re
@@ -71,7 +71,14 @@ except Exception as e:
     PATIENTS_LOADED = False
     patients_df = None
     print(f"⚠️ Patient data not found: {e}")
-
+def preprocess_for_ocr(image):
+    """Improve OCR accuracy on photographed/scanned medical reports by
+    normalizing uneven lighting and binarizing text before passing to Tesseract."""
+    image = image.convert('L')                     # grayscale
+    image = ImageOps.autocontrast(image, cutoff=2)  # fix shadows/glare
+    threshold = 150
+    image = image.point(lambda p: 255 if p > threshold else 0)  # clean black/white text
+    return image
 # --- OCR Function ---
 def extract_text_from_file(uploaded_file):
     """Extract text from PDF or image using OCR."""
@@ -87,7 +94,7 @@ def extract_text_from_file(uploaded_file):
         if filename.endswith(".pdf"):
             pages = convert_from_bytes(file_bytes, size=(1500, None), dpi=200)
             for page in pages:
-                page = page.convert('L')
+                page = preprocess_for_ocr(page)
                 text += pytesseract.image_to_string(page, config='--psm 6')
         else:
             image = Image.open(io.BytesIO(file_bytes))
@@ -99,7 +106,7 @@ def extract_text_from_file(uploaded_file):
                 aspect_ratio = height / width
                 new_height = int(max_width * aspect_ratio)
                 image = image.resize((max_width, new_height), Image.LANCZOS)
-            image = image.convert('L')
+            image = preprocess_for_ocr(image)
             text = pytesseract.image_to_string(image, config='--psm 6')
 
     except Exception as e:
