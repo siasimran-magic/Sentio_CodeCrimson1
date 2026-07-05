@@ -16,29 +16,29 @@ This system is designed to **assist**, not replace, medical expertise.
 
 ---
 
-## 🌟 Key Features
+##  Key Features
 
-### 🤖 AI-Powered PPH Risk Prediction
+###  AI-Powered PPH Risk Prediction
 
 * **XGBoost-based model** trained on over 3,200 maternal records
 * Predicts **Postpartum Hemorrhage (PPH)** risk from vital and obstetric parameters
 * Provides **real-time risk prediction** and explainable feature contributions
 * Generates downloadable **medical-grade reports**
 
-### 🎙️ OT Mode – Voice-Activated Emergency Response
+###  OT Mode – Voice-Activated Emergency Response
 
 * Detects triple keyword **“blood, blood, blood”** to trigger emergency alert
 * Instantly contacts **nearest blood bank** via Twilio integration
 * Includes **visual confirmation**, **manual override**, and **activity logging**
 * Designed as a **fallback system** during unpredictable hemorrhage emergencies
 
-### 📊 Maternal Health Reporting
+### Maternal Health Reporting
 
 * Auto-generates detailed health summaries and risk reports
 * PDF export for hospital documentation
 * Tracks vitals: hemoglobin, platelets, blood pressure, BMI, and more
 
-### 🏥 Blood Bank Management
+###  Blood Bank Management
 
 * Real-time **inventory tracking** and **nearest bank locator**
 * Automated **emergency request routing**
@@ -46,7 +46,7 @@ This system is designed to **assist**, not replace, medical expertise.
 
 ---
 
-## 📋 How It Works
+##  How It Works
 
 ### PPH Risk Prediction Pipeline
 
@@ -71,7 +71,7 @@ Maternal demographics, vital signs, obstetric history, delivery details, and ris
 
 ---
 
-## 🏗️ System Architecture
+##  System Architecture
 
 ```
 ┌───────────────────────────┐
@@ -99,7 +99,7 @@ Maternal demographics, vital signs, obstetric history, delivery details, and ris
 
 ---
 
-## ⚙️ Tech Stack
+##  Tech Stack
 
 **Frontend:** HTML, CSS, JavaScript (Web Speech API)
 **Backend:** Flask (Python)
@@ -109,7 +109,7 @@ Maternal demographics, vital signs, obstetric history, delivery details, and ris
 
 ---
 
-## 🧠 ML Model Overview
+##  ML Model Overview
 
 * **Algorithm:** XGBoost (Extreme Gradient Boosting)
 * **Training Data:** 3,200+ maternal health records from diverse datasets
@@ -145,7 +145,7 @@ Voice Input → Keyword Detection → Emergency Trigger → Twilio Call → Bloo
 
 ---
 
-## 📊 Dashboard & Analytics
+## Dashboard & Analytics
 
 * Real-time PPH risk visualization
 * Response time tracking for emergencies
@@ -154,11 +154,9 @@ Voice Input → Keyword Detection → Emergency Trigger → Twilio Call → Bloo
 
 ---
 
-## 📜 License
+##  License
 
 This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
 
 ---
 
-**Made with ❤️ by Team Sentio**
-Empowering healthcare professionals with AI for safer motherhood.
